@@ -141,8 +141,8 @@
 			<li value="4">富硒伴侣</li>
 		</ul>
 	</div>-->
-<!--瀑布流-->	
-	
+<!--瀑布流-->
+
    <!-- <ul class="aui-list-view aui-grid-view productList" id="riceList">
 	    <li class="aui-list-view-cell aui-img aui-col-xs-6" onclick="openNewWin('productDetails')">
      	  <img class="aui-img-object" src="../image/img.jpg">
@@ -162,22 +162,22 @@
 	  <a href="javascript:;" class="item" value=21>富硒梨</a>
 	</div>
     <div class="tab-cont">
-		  <ul class="tab-cont__wrap">
+		  <ul class="tab-cont__wrap" >
 			<li class="item" id="riceList">
-				<div class="aui-list-view-cell aui-img aui-col-xs-6 list" pId='+id+' name='+list[i].title+' price='+list[i].price+' image='+list[i].img_url+'>
-					<img class="aui-img-object"  src="../image/img.jpg" data='+list[i].img_url+'>
-					<div class="aui-img-body">
-						list[i].title+'<br>
-					<p class="price">￥'+list[i].price+'</p>
-					</div>
-				</div>
-				<div class="aui-list-view-cell aui-img aui-col-xs-6 list" pId='+id+' name='+list[i].title+' price='+list[i].price+' image='+list[i].img_url+'>
-					<img class="aui-img-object"  src="../image/img.jpg" data='+list[i].img_url+'>
-					<div class="aui-img-body">
-						list[i].title+'<br>
-					<p class="price">￥'+list[i].price+'</p>
-					</div>
-				</div>
+				<!--<div class="aui-list-view-cell aui-img aui-col-xs-6 list" pId='+id+' name='+list[i].title+' price='+list[i].price+' image='+list[i].img_url+'>-->
+					<!--<img class="aui-img-object"  src="../image/img.jpg" data='+list[i].img_url+'>-->
+					<!--<div class="aui-img-body">-->
+						<!--list[i].title+'<br>-->
+					<!--<p class="price">￥'+list[i].price+'</p>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="aui-list-view-cell aui-img aui-col-xs-6 list" pId='+id+' name='+list[i].title+' price='+list[i].price+' image='+list[i].img_url+'>-->
+					<!--<img class="aui-img-object"  src="../image/img.jpg" data='+list[i].img_url+'>-->
+					<!--<div class="aui-img-body">-->
+						<!--list[i].title+'<br>-->
+					<!--<p class="price">￥'+list[i].price+'</p>-->
+					<!--</div>-->
+				<!--</div>-->
 			</li>
 			<li class="item" id="vinegarList"></li>
 			<li class="item"></li>
@@ -216,24 +216,27 @@
 			    method: 'get',		
 			},function(ret, err){
 				if(ret&&ret.stateCode==1){
-					var list=ret.products, str="";
-					var len=ret.products.length;
-					for(var i=0;i<len;i++){
+					var list=ret.barns, str="";
+					$api.jsonToStr(list);
+					var msg = $api.jsonToStr(list);
+					//alert(msg);
+					var len=ret.barns.length;
+					for(var i=0;i<len-1;i++){
 						var id=list[i].id;
 					    var img = '<img class="aui-img-object" src='+imgurls+list[i].img_url+' data='+list[i].img_url+'>'
 						if(list[i].img_url==''){
-						   img='<img class="aui-img-object"  src="../image/img.jpg" data='+list[i].img_url+'>'
+						   img='<img class="aui-img-object"  src="../images/Hydrangeas.jpg" data='+list[i].img_url+'>'
 						 }
 						str+='<div class="aui-list-view-cell aui-img aui-col-xs-6 list" pId='+id+' name='+list[i].title+' price='+list[i].price+' image='+list[i].img_url+'>'+img+
 									'<div class="aui-img-body">'+
-										list[i].title+'<br>'+
-									'<p class="price">￥'+list[i].price+'</p>'+
+										list[i].product.title+'<br>'+
+									'<p class="price">￥'+list[i].product.price+'</p>'+
 									'</div>'+
 								'</div>'
 					  }
 					  $('#riceList').html(str);
 				}else{
-//	        		alert('暂时没有更多推荐');
+	        		alert('暂时没有更多推荐');
 			   }
 			});
 	   };
