@@ -296,7 +296,7 @@
 				for(var i=0;i<len;i++){
 				var img = '<img class="aui-img-object" src='+imgurls+list[i].img_url+' data='+list[i].img_url+'>'
 				if(list[i].img_url==''){
-				 img='<img class="aui-img-object"  src="../image/img.jpg" data='+list[i].img_url+'>'
+				 img='<img class="aui-img-object"  src="../images/Hydrangeas.jpg" data='+list[i].img_url+'>'
 				 }
 				str+='<li class="aui-list-view-cell aui-img aui-col-xs-6" pId='+list[i].id+' name='+list[i].title+' price='+list[i].price+' image='+list[i].img_url+'>'+img+
 							'<div class="aui-img-body">'+
@@ -343,7 +343,7 @@
 		      	var uid = 'product_id';
 		      	var id = $(this).parent().parent().attr('pId');
 				api.ajax({
-				    url:BASE_URL+'car/addCar.html?'+uid+'='+id+'&product_amount='+counts+'&user_id='+userId,
+				    url:BASE_URL+'car/addCar.html?'+uid+'='+id+'&product_amount='+counts+'&user_id='+ userId,
 			        method: 'get',
 			        dataType:'json'
 		        },function(ret,err){
