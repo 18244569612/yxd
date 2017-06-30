@@ -18,26 +18,40 @@
     		max-height:1.94rem;
     	}
        #newList li{
-		   width: 100%;
-		   height: 92px;
-		   border-bottom: 1px solid #e6e6e6;
-		   line-height: 92px;
+           width: 100%;
+           height: 2rem;
+           border-bottom: 1px solid #e6e6e6;
+           line-height: 2rem;
 	   }
+        #newList li p {
+            width: 100%;
+            font-size: 0.4rem;
+            color: #666666;
+        }
 		.List{
-			font-size: 24px;
-			color: #666666;
+			display: left;
+            padding-left: 0.5rem;
+            width: 25%;
+            height: 2rem;
+            line-height: 2rem;
+            text-align: left;
 		}
 		.ListContent{
-			font-size: 24px;
-			color: #1E1E1E;
+			display: left;
+            width: 74%;
+            height: 2rem;
+            line-height: 2rem;
+            text-align: left;
 		}
 		.btn{
-			position: relative;
-			bottom: 0;
-			width: 100%;
-			height: 92px;
-			background: #fed420;
-			text-align: center;
+			    position: relative;
+                bottom: 0rem;
+                width: 100%;
+                height: 1.85rem;
+                background: #fed420;
+                text-align: center;
+                line-height: 1.85rem;
+                font-size: 0.6rem;
 		}
        
        
@@ -52,13 +66,14 @@
 	</header>
 	<div class="kongbai"></div>
 	<div class="aui-aui-content">
-     	<ul class="aui-list-view" id="newList">
-     		<li><p><span class="List">地编号：</span><span class="ListContent">xv</span></p></li>
-			<li><p><span class="List">地  名：</span><span class="ListContent">xv</span></p></li>
-			<li><p><span class="List">种植作物：</span><span class="ListContent">xv</span></p></li>
-			<li><p><span class="List">当前状态：</span><span class="ListContent">xv</span></p></li>
-			<li><p><span class="List">有效期：</span><span class="ListContent">xv</span></p></li>
-			<li><p><span class="List">位  置：</span><span class="ListContent">xv</span></p></li>
+     	<ul class="aui-list-view" id="newList">	
+             <li><p><span class="List">地名</span><span class="ListContent">xv</span></p></li>
+             <li><p><span class="List">位置</span><span class="ListContent">xv</span></p></li>
+             <li><p><span class="List">地编号</span><span class="ListContent">xv</span></p></li>
+             <li><p><span class="List">有效期</span><span class="ListContent">xv</span></p></li>
+             <li><p><span class="List">种植作物</span><span class="ListContent">xv</span></p></li>
+             <li><p><span class="List">当前状态</span><span class="ListContent">xv</span></p></li>
+			
      	</ul>
      </div>
 </div>
