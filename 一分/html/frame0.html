@@ -235,9 +235,9 @@
      	</li>
      </ul>
       <div class="aui-tips" id="myLand">
-     	<div class="aui-tips-content aui-arrow-right aui-ellipsis-1">
+     	<div class="aui-tips-content aui-arrow-right aui-ellipsis-1" onclick="openNewWin('OpenMypennyOfLand')">
      		<span class="title">进入我的一分地</span>
- 	        <span class="more" onclick="openNewWin('pennyOfLand')"></span>
+ 	        <span class="more" ></span>
      	</div>
      </div>
      <div class="aui-tips ">
@@ -330,12 +330,12 @@
 				var list=ret.resultList, str="";
 				var len=ret.resultList.length;
 				for(var i=0;i<len;i++){
-				var imgurls='http://192.168.1.102:54321/selenium/';
+				var imgurls='http://192.168.1.104:8080/selenium/';
 				str+='<li class="aui-list-view-cell aui-img">'+
 				 '<img class="aui-img-object aui-pull-left"  src='+imgurls+list[i].img_url+' data='+list[i].img_url+'>'+
 							'<div class="aui-img-body  aui-ellipsis-1" id='+list[i].title+'>'+
 								list[i].title+'<br>'+
-								'<span class="time">'+list[i].addTime+'</span>'+
+			  					'<span class="time">'+list[i].addTime+'</span>'+
 								'<p class="confirm">认证标签</p>'+
 							'</div>'+
 						'</li>'
@@ -360,6 +360,7 @@
 				var len=ret.resultList.length;
 				for(var i=0;i<len;i++){
 				var img = '<img class="aui-img-object" src='+imgurls+list[i].img_url+' data='+list[i].img_url+'>'
+				//var img = '<img class="aui-img-object" src='+list[i].img_url+' data='+list[i].img_url+'>'
 				if(list[i].img_url==''){
 				 img='<img class="aui-img-object"  src="../image/img.jpg" data='+list[i].img_url+'>'
 				 }
