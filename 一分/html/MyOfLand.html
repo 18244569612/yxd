@@ -17,23 +17,28 @@
     		height:1.94rem;
     		max-height:1.94rem;
     	}
-        .time{
-            float:right;
-            font-size:0.38rem;
-            margin-top:0.14rem;
-        }
-        .aui-img-body{
-            font-size:0.52rem;
-        }
-        .confirm{
-	        display:inline-block;
-	        border:1px solid #CCCCCC;
-	        padding:0.07rem 0.14rem;
-	        text-align:center;
-	        border-radius:0.07rem;
-	        margin-top:0.2rem;
-	        font-size:0.33rem;
-        }
+       #newList li{
+		   width: 100%;
+		   height: 92px;
+		   border-bottom: 1px solid #e6e6e6;
+		   line-height: 92px;
+	   }
+		.List{
+			font-size: 24px;
+			color: #666666;
+		}
+		.ListContent{
+			font-size: 24px;
+			color: #1E1E1E;
+		}
+		.btn{
+			position: relative;
+			bottom: 0;
+			width: 100%;
+			height: 92px;
+			background: #fed420;
+			text-align: center;
+		}
        
        
     </style>
@@ -46,36 +51,18 @@
 		<div class="title">我的源硒地</div>
 	</header>
 	<div class="kongbai"></div>
-<!--地区详情-->
 	<div class="aui-aui-content">
      	<ul class="aui-list-view" id="newList">
-     		<!--<li class="aui-list-view-cell aui-img">
-     			<img class="aui-img-object aui-pull-left" src="../image/aui/demo4.png">
-     			<div class="aui-img-body  aui-ellipsis-1">
-     			         最新动态 
-     			   <span class="time">2017-05-03</span><br>
-     				<p class="confirm">认证标签</p>
-     			</div>
-     		</li>
-     		<li class="aui-list-view-cell aui-img">
-     			<img class="aui-img-object aui-pull-left" src="../image/aui/demo4.png">
-     			<div class="aui-img-body  aui-ellipsis-1">
-     			         最新动态 
-     			   <span class="time">2017-05-03</span><br>
-     				<p class="confirm">认证标签</p>
-     			</div>
-     		</li>
-     		<li class="aui-list-view-cell aui-img">
-     			<img class="aui-img-object aui-pull-left" src="../image/aui/demo4.png">
-     			<div class="aui-img-body  aui-ellipsis-1">
-     			         最新动态 
-     			   <span class="time">2017-05-03</span><br>
-     				<p class="confirm">认证标签</p>
-     			</div>
-     		</li>-->
+     		<li><p><span class="List">地编号：</span><span class="ListContent">xv</span></p></li>
+			<li><p><span class="List">地  名：</span><span class="ListContent">xv</span></p></li>
+			<li><p><span class="List">种植作物：</span><span class="ListContent">xv</span></p></li>
+			<li><p><span class="List">当前状态：</span><span class="ListContent">xv</span></p></li>
+			<li><p><span class="List">有效期：</span><span class="ListContent">xv</span></p></li>
+			<li><p><span class="List">位  置：</span><span class="ListContent">xv</span></p></li>
      	</ul>
      </div>
-</div>	
+</div>
+<div class="btn">赠送</div>
 </body>
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript" src="../script/jquery-2.1.3.min.js"></script>
@@ -83,10 +70,19 @@
 <script type="text/javascript" src="../script/swipe.js"></script>
 <script type="text/javascript" src="../script/common.js"></script>
 <script type="text/javascript">
-	apiready = function(){
+	apiready = function() {
 		var field_id = api.pageParam.Bid;
-		var userInfor = $api.getStorage('userInfor');
-		var id = userInfor.id;
+		alert(field_id)
+		api.ajax({
+			url: 'http://192.168.1.104:8080/selenium/client/field//getFieldInfo?field_id=1_1',
+			method: 'get',
+			dataType: 'json',
+			returnAll: false,
+		}, function (ret, err) {
+			$api.jsonToStr(ret);
+			alert($api.jsonToStr(ret));
+		});
+
 //		api.ajax({
 //			url: 'http://192.168.1.104:8080/selenium/manage/field/getField?id='+id,
 //			method: 'get',
@@ -119,25 +115,6 @@
 //
 //			})
 //		});
-	  var news=$api.getStorage('news')
-	  var list=news.resultList, str="";
-	  var len=news.resultList.length;
-	 for(var i=0;i<len;i++){
-				var imgurls='http://192.168.1.102:54321/selenium/';
-//				var img = '<img class="aui-img-object" src='+list[i].img_url+' data='+list[i].img_url+'>'
-//				if(list[i].img_url==''){
-//				 img='<img class="aui-img-object"  src="../image/img.jpg" data='+list[i].img_url+'>'
-//				 }
-				str+='<li class="aui-list-view-cell aui-img">'+
-				 '<img class="aui-img-object aui-pull-left"  src='+imgurls+list[i].img_url+' data='+list[i].img_url+'>'+
-							'<div class="aui-img-body  aui-ellipsis-1" id='+list[i].title+'>'+
-								list[i].title+'<br>'+
-								'<span class="time">'+list[i].addTime+'</span>'+
-								'<p class="confirm">认证标签</p>'+
-							'</div>'+
-						'</li>'
-				  }
-				  	$('#newList').append(str);
-	       };
+	}
 </script>
 </html>
