@@ -18,6 +18,7 @@
     		max-height:1.94rem;
     	}
        #newList li{
+<<<<<<< HEAD
 		   width: 100%;
 		   height: 92px;
 		   border-bottom: 1px solid #e6e6e6;
@@ -41,6 +42,43 @@
 		}
        
        
+=======
+           width: 100%;
+           height: 2rem;
+           border-bottom: 1px solid #e6e6e6;
+           line-height: 2rem;
+	   }
+        #newList li p {
+            width: 100%;
+            font-size: 0.4rem;
+            color: #666666;
+        }
+		.List{
+			display: left;
+            padding-left: 0.5rem;
+            width: 25%;
+            height: 2rem;
+            line-height: 2rem;
+            text-align: left;
+		}
+		.ListContent{
+			display: left;
+            width: 74%;
+            height: 2rem;
+            line-height: 2rem;
+            text-align: left;
+		}
+		.btn{
+			    position: relative;
+                bottom: 0rem;
+                width: 100%;
+                height: 1.85rem;
+                background: #fed420;
+                text-align: center;
+                line-height: 1.85rem;
+                font-size: 0.6rem;
+		} 
+>>>>>>> e4385798f32747861c19c3c972e4ae1f7eed07c4
     </style>
 </head>
 <body>
@@ -48,6 +86,7 @@
 		<a class="aui-pull-left" onclick="closeW()">
 			<span class="aui-iconfont aui-icon-left"></span>
 		</a>
+<<<<<<< HEAD
 		<div class="title">我的源硒地</div>
 	</header>
 	<div class="kongbai"></div>
@@ -59,6 +98,19 @@
 			<li><p><span class="List">当前状态：</span><span class="ListContent">xv</span></p></li>
 			<li><p><span class="List">有效期：</span><span class="ListContent">xv</span></p></li>
 			<li><p><span class="List">位  置：</span><span class="ListContent">xv</span></p></li>
+=======
+		<div class="title">我的硒地</div>
+	</header>
+	<div class="kongbai"></div>
+	<div class="aui-aui-content">
+     	<ul class="aui-list-view" id="newList">	
+      <!--        <li><p><span class="List">地名</span><span class="ListContent">xv</span></p></li>
+             <li><p><span class="List">位置</span><span class="ListContent">xv</span></p></li>
+             <li><p><span class="List">地编号</span><span class="ListContent">xv</span></p></li>
+             <li><p><span class="List">有效期</span><span class="ListContent">xv</span></p></li>
+             <li><p><span class="List">种植作物</span><span class="ListContent">xv</span></p></li>
+             <li><p><span class="List">当前状态</span><span class="ListContent">xv</span></p></li> -->
+>>>>>>> e4385798f32747861c19c3c972e4ae1f7eed07c4
      	</ul>
      </div>
 </div>
@@ -72,14 +124,21 @@
 <script type="text/javascript">
 	apiready = function() {
 		var field_id = api.pageParam.Bid;
+<<<<<<< HEAD
 		alert(field_id)
 		api.ajax({
 			url: 'http://192.168.1.104:8080/selenium/client/field//getFieldInfo?field_id=1_1',
+=======
+		//alert(field_id)
+		api.ajax({
+			url: 'http://192.168.1.104:8080/selenium/client/field//getFieldInfo?field_id='+field_id,
+>>>>>>> e4385798f32747861c19c3c972e4ae1f7eed07c4
 			method: 'get',
 			dataType: 'json',
 			returnAll: false,
 		}, function (ret, err) {
 			$api.jsonToStr(ret);
+<<<<<<< HEAD
 			alert($api.jsonToStr(ret));
 		});
 
@@ -116,5 +175,23 @@
 //			})
 //		});
 	}
+=======
+			//alert($api.jsonToStr(ret));
+			var str = '<li><p><span class="List">地名</span><span class="ListContent">'+ret.fieldInfo.title+'</span></p></li><li><p><span class="List">位置</span><span class="ListContent">'+ret.fieldInfo.location+'</span></p></li><li><p><span class="List">地编号</span><span class="ListContent ListContentField_id">'+ret.fieldInfo.field_id+'</span></p></li> <li><p><span class="List">有效期</span><span class="ListContent">'+ret.fieldInfo.price+'</span></li><li><p><span class="List">种植作物</span><span class="ListContent">'+ret.fieldInfo.product_id+'</span></p></li><li><p><span class="List">当前状态</span><span class="ListContent">'+ret.fieldInfo.status+'</span></p></li>';
+            $('#newList').append(str);
+		});
+	} 
+    $('.btn').click(function () {
+        var field_id = $('.ListContentField_id').text();
+        alert(field_id);
+        api.openWin({
+            name: 'Freeland',
+            url: 'Freeland.html',
+            pageParam: {
+                field_id: field_id
+            }
+        });
+    })
+>>>>>>> e4385798f32747861c19c3c972e4ae1f7eed07c4
 </script>
 </html>
