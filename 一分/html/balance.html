@@ -344,6 +344,7 @@
 	        method: 'get',
 	        dataType:'json'
         },function(ret,err){
+        	alert($$api.jsonToStr(ret))
         	showDefault();
         	if(ret && ret.stateCode == 1){
         	 	api.openWin({
