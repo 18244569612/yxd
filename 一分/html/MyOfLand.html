@@ -52,9 +52,7 @@
                 text-align: center;
                 line-height: 1.85rem;
                 font-size: 0.6rem;
-		}
-       
-       
+		} 
     </style>
 </head>
 <body>
@@ -62,18 +60,17 @@
 		<a class="aui-pull-left" onclick="closeW()">
 			<span class="aui-iconfont aui-icon-left"></span>
 		</a>
-		<div class="title">我的源硒地</div>
+		<div class="title">我的硒地</div>
 	</header>
 	<div class="kongbai"></div>
 	<div class="aui-aui-content">
      	<ul class="aui-list-view" id="newList">	
-             <li><p><span class="List">地名</span><span class="ListContent">xv</span></p></li>
+      <!--        <li><p><span class="List">地名</span><span class="ListContent">xv</span></p></li>
              <li><p><span class="List">位置</span><span class="ListContent">xv</span></p></li>
              <li><p><span class="List">地编号</span><span class="ListContent">xv</span></p></li>
              <li><p><span class="List">有效期</span><span class="ListContent">xv</span></p></li>
              <li><p><span class="List">种植作物</span><span class="ListContent">xv</span></p></li>
-             <li><p><span class="List">当前状态</span><span class="ListContent">xv</span></p></li>
-			
+             <li><p><span class="List">当前状态</span><span class="ListContent">xv</span></p></li> -->
      	</ul>
      </div>
 </div>
@@ -87,49 +84,29 @@
 <script type="text/javascript">
 	apiready = function() {
 		var field_id = api.pageParam.Bid;
-		alert(field_id)
+		//alert(field_id)
 		api.ajax({
-			url: 'http://192.168.1.104:8080/selenium/client/field//getFieldInfo?field_id=1_1',
+			url: 'http://192.168.1.104:8080/selenium/client/field//getFieldInfo?field_id='+field_id,
 			method: 'get',
 			dataType: 'json',
 			returnAll: false,
 		}, function (ret, err) {
 			$api.jsonToStr(ret);
-			alert($api.jsonToStr(ret));
+			//alert($api.jsonToStr(ret));
+			var str = '<li><p><span class="List">地名</span><span class="ListContent">'+ret.fieldInfo.title+'</span></p></li><li><p><span class="List">位置</span><span class="ListContent">'+ret.fieldInfo.location+'</span></p></li><li><p><span class="List">地编号</span><span class="ListContent ListContentField_id">'+ret.fieldInfo.field_id+'</span></p></li> <li><p><span class="List">有效期</span><span class="ListContent">'+ret.fieldInfo.price+'</span></li><li><p><span class="List">种植作物</span><span class="ListContent">'+ret.fieldInfo.product_id+'</span></p></li><li><p><span class="List">当前状态</span><span class="ListContent">'+ret.fieldInfo.status+'</span></p></li>';
+            $('#newList').append(str);
 		});
-
-//		api.ajax({
-//			url: 'http://192.168.1.104:8080/selenium/manage/field/getField?id='+id,
-//			method: 'get',
-//			timeout: 30,
-//			dataType: 'json',
-//			returnAll: false,
-//		}, function (ret, err) {
-//			//var msg = $api.jsonToStr(ret);
-//			var rowslen = ret.rows.length;
-//			for(var i=0;i<=rowslen-1;i++){
-//				var str = '<li class="aui-list-view-cell aui-img lio" ><img class="aui-img-object aui-pull-left" src="../image/aui/demo4.png" ><div class="aui-img-body  aui-ellipsis-1" id='+ret.rows[i].field_id+'>'+ret.rows[i].title+'<br><span class="selenium_amount_max">含硒量:</span><span class="selenium_amount_max">'+ret.rows[i].selenium_amount_max+'</span><br><span class="selenium_amount_max">土地编号:</span><span class="selenium_amount_max">'+ret.rows[i].location+'</span><button class="look" id='+ret.rows[i].id+'>去看看</button></div></li>';
-//				$('#newList').append(str);
-//
-//
-//			}
-//			$('#newList').click(function(ev){
-//				var target  = ev.target
-//				var tagname  = target.tagName.toUpperCase();
-//				if(tagname=="DIV" || tagname == "BUTTON" ){
-//					var Bid= target.id
-//					api.openWin({
-//						name: 'MyOfLand',
-//						url: 'MyOfLand.html',
-//						pageParam: {Bid: Bid},
-//					});
-//				}
-//
-////
-////
-//
-//			})
-//		});
-	}
+	} 
+    $('.btn').click(function () {
+        var field_id = $('.ListContentField_id').text();
+        alert(field_id);
+        api.openWin({
+            name: 'Freeland',
+            url: 'Freeland.html',
+            pageParam: {
+                field_id: field_id
+            }
+        });
+    })
 </script>
 </html>
