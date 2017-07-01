@@ -10,14 +10,18 @@
     <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="../css/aui.2.0.css"/>
     <style>
+        html{
+            font-size: 10px;
+        }
+
         #header{
-        	height:2.93rem;
-        	background-color: #1AAB3C;
-        	padding-top:0.86rem;
+        	height: 2rem;
+            background-color: #1AAB3C;
+            line-height: 2rem;
         }
         #header .aui-pull-left img{
-        	width:0.63rem;
-        	margin-left:0.42rem;
+        	width:0.6rem;
+        	margin-left:0.5rem;
         }
         #header .spot{
 			width:0.3rem;
@@ -31,14 +35,18 @@
 		}
      
          #header .aui-pull-right img{
-        	width:0.63rem;
-        	margin-right:0.53rem;
+            width: 0.5rem;
+            margin-right: 0.5rem;
         }
         
 /*头像*/   
+
 /*登录后*/	
 		.user{
-			display:none;
+                display: none;
+                width: 60%;
+                height: 2rem;
+                padding-left: 0.5rem;
 		}	     
         .aui-user-view-cell{
         	overflow:visible;
@@ -48,14 +56,15 @@
 		    /*border-bottom: 0.01rem solid #ccc;*/
 		    padding:0;
         }
-        .aui-user-view:after{
-        	border:0 none;
-        }
+
         .aui-user-view-cell .aui-img-object.aui-pull-left{
-        	max-width:1.94rem !important;
-        	width:1.94rem !important;
-        	height:1.94rem !important;
-        	margin-top:-0.83rem;
+        	    max-width: 1.94rem !important;
+                width: 1.94rem !important;
+                height: 1.94rem !important;
+                position: relative;
+                top: -0.5rem;
+                left: 0.5rem;
+                z-index: 1;
         }
         .aui-img-body.aui-arrow-right img{
         	height:0.47rem;
@@ -65,32 +74,31 @@
         .aui-user-view-cell .aui-img-body span{
         	margin:0;
         }
-        .aui-user-view-cell .aui-img-body.aui-arrow-right:after{
-        	color:#666;
-        }
-        .aui-content{
-        	margin:0;
-        }
-        .aui-user-view{
-        	margin:0;
-        }
+
 /*登录前*/
+        .noLogin{
+                width: 70%;
+                height: 2rem;
+                padding-left: 0.6rem;
+                line-height: 2rem; 
+        }
 		.aui-user-view-cell .aui-img-body button{
-			width:2.06rem;
-			height:0.83rem;
-			line-height:0.83rem;
-			padding:0;
-			font-size:0.42rem;
-			border: 0.01rem solid #333;
-			background-color: #fff;
-			font-weight:500;
+			width: 2.5rem;
+            height: 1rem;
+            line-height: 1rem;
+            padding: 0;
+            font-size: 0.42rem;
+            border: 0.01rem solid #333;
+            background-color: #fff;
+            font-weight: 500;
 		}	
 		.aui-user-view-cell .aui-img-body button:last-child{
 			border:0 none;
 			background-color: #1AAB3C;
 			color:#fff;
 		}
-        
+
+     
 /*订单*/        
         
         .aui-tab-nav{
@@ -127,6 +135,7 @@
     </style>
 </head>
 <body>
+
     <div id="header">
     	<a href="" class="aui-pull-left" onclick="openNewWin('userSet')">
     		<img src="../image/nav_btn_set-up.png" alt="" />
@@ -141,17 +150,20 @@
 		<ul class="aui-user-view aui-in">
 			<li class="aui-user-view-cell aui-img pic">
 				<img class="aui-img-object aui-pull-left head" src="../image/aui/demo3.png">
+
 				<div class="aui-img-body aui-arrow-right user">
 					<span>李四叫王五</span>
 					<img src="../image/my_icon_man.png" alt="" />
 				</div>
-				<div class="aui-img-body aui-arrow-right noLogin">
+
+				<div class="aui-img-body noLogin">
 					<button class="login">登录</button>
 					<button class="register" onclick="openNewWin('user_login')">注册</button>
 				</div>
 			</li>
 		</ul>
 	</div>
+
 <!--订单-->   
 	
 	<div class="aui-tab aui-tab-dark">
