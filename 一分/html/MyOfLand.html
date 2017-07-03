@@ -78,7 +78,6 @@
 <script type="text/javascript">
     apiready = function() {
         var field_id = api.pageParam.Bid;
-        //alert(field_id)
         api.ajax({
             url: 'http://192.168.1.106:8080/selenium/client/field//getFieldInfo?field_id='+field_id,
             method: 'get',
