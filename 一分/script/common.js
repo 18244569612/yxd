@@ -1,7 +1,7 @@
 	
 // 	接口地址
-	var BASE_URL = 'http://192.168.1.107:8080/selenium/client/';
-	var imgurls='http://192.168.1.107:8080/selenium/';
+	var BASE_URL = 'http://192.168.1.106:8080/selenium/client/';
+	var imgurls='http://192.168.1.106:8080/selenium/';
 	//关闭窗口
 	function closeW(){
 		api.closeWin({
