@@ -160,7 +160,7 @@ dialogBox.alert({
         var user_id = userInfor.id;
         var field_id = api.pageParam.field_id;
         api.ajax({
-            url:  'http://192.168.1.104:8080/selenium/client/field/fieldPresent?field_id='+field_id+'&from_user_id='+user_id+'&to_user_name='+text+'',
+            url:  BASE_URL+'field/fieldPresent?field_id='+field_id+'&from_user_id='+user_id+'&to_user_name='+text+'',
               method: 'get',
         }, function(ret, err) {
             if (ret) {

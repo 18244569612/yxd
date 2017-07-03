@@ -320,7 +320,7 @@
 	    $('.address p').eq(0).attr('name', name);
 	    $('.address p').eq(0).attr('telephone', tel);
 	    $('.address p').eq(1).attr('dId', userInfor.addressList[0].id);
-<<<<<<< HEAD
+
 		$('.address').click(function(){
 			ShowDiv('myAddress','fade');
 			api.ajax({
@@ -403,50 +403,11 @@
         		show(ret.stateMessage);
         	}
         });
-=======
-	    $('.address').click(function(){
-	    	ShowDiv('myAddress','fade');
-	    	api.ajax({
-	    		url:BASE_URL+'user/doLogin.html?userName='+userInfor.userName+'&password='+userInfor.password,
-	    		method:'GET'
-	    	},function(ret,err){
-	    		if(ret && ret.stateCode == 1){
-	    			var ress = ret.user.addressList, str="";
-	    			for(var i = 0; i<ress.length; i++){
-	    				str+='<li class="aui-user-view-cell aui-img">'+
-	    				'<div class="aui-img-body">'+
-	    				'<span name='+ress[i].dispatch.userName+'>收货人:'+ress[i].dispatch.userName+'<em>'+ress[i].dispatch.telephone+'</em></span>'+
-	    				'<p class="aui-ellipsis-1" dId='+ress[i].dispatch_id+'>'+ress[i].address+'</p>'+
-	    				'</div>'+
-	    				'</li>'
-	    			}
-
-	    			$('#myAddress ul').html(str);
-	    		}else{
-	    			api.openWin({
-	    				name: 'user_login',
-	    				url: 'user_login.html'
-	    			});
-	    		}
-	    	});
-	    })
 
 
 
-	    $('#myAddress ul').on('click', 'li', function(){
-	    	var name = $(this).find('span').attr('name');
-	    	var telephone = $(this).find('em').html();
-	    	var address = $(this).find('p').html();
-	    	var dId = $(this).find('p').attr('dId');
-	    	$('.address p').eq(0).html(name+','+telephone);
-	    	$('.address p').eq(1).html(address);
-	    	$('.address p').eq(0).attr('name', name);
-	    	$('.address p').eq(0).attr('telephone', telephone);
-	    	$('.address p').eq(1).attr('dId', dId);
-	    	
-	    	CloseDiv('myAddress','fade');
-	    })
-	    
+
+	 
 
 
 
@@ -457,13 +418,11 @@
 
 	}
 	
+	
 
 
 	
-	$('#logistics').click(function(){
-		$('#express').css('display', 'block');
->>>>>>> temp
-	});
+
 	$('#express li').click(function(){
 		var str = $(this).html();
 		$('#logistics span').html(str);
