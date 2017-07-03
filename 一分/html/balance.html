@@ -241,7 +241,7 @@
 	<div id="footer">
 		<ul>
 			<li>
-				合计金额:<span class="total">￥75.5</span>
+				合计金额:<span class="total">￥0</span>
 				<em class="freight">包含运费:￥8.00元</em>
 			</li>
 			<li id="Payfor">立即付款</li>
@@ -255,35 +255,72 @@
 <script type="text/javascript" src="../script/alert.js"></script>
 <script type="text/javascript">
 	apiready = function(){
-		var id=api.pageParam.id; //商品id
+	    var id=api.pageParam.id; //商品id
 	    var deliver=parseInt($('.freight').text().substring(6,7)); //运费
 //	    var sum= price*counts+ deliver; //总金额
-		var sum = api.pageParam.sum;
-	    var carId=api.pageParam.carId; //购物车id
+        var sum = api.pageParam.sum;
+        $('.total').html('￥'+sum);
+			    var carId=api.pageParam.carId; //购物车id
 	    var message=$('#message').val(); //  留言信息
 	    var arr = api.pageParam.arr;
 	    var str = "", car_ids = [];
 	    for(var i = 0; i < arr.length; i++){
 	    	str+='<li class="aui-user-view-cell aui-img">'+
-					'<img class="aui-img-object aui-pull-left" src='+arr[i].image+'>'+
-					'<div class="aui-img-body">'+
-						'<span class="name">'+arr[i].name+'</span>'+
-						'<p class="aui-ellipsis-1 price">￥'+arr[i].price+'<em class="counts">x'+arr[i].counts+'</em></p>'+
-					'</div>'+
-				'</li>';
-				car_ids.push(arr[i].carId);
-				
+	    	'<img class="aui-img-object aui-pull-left" src='+arr[i].image+'>'+
+	    	'<div class="aui-img-body">'+
+	    	'<span class="name">'+arr[i].name+'</span>'+
+	    	'<p class="aui-ellipsis-1 price">￥'+arr[i].price+'<em class="counts">x'+arr[i].counts+'</em></p>'+
+	    	'</div>'+
+	    	'</li>';
+
+	    	car_ids.push(arr[i].carId);
+
 	    }
-	    
+
 	    $('#product ul').html(str);
+	    $('#Payfor').click(function(){
+	    	
+	    	var name = $('.address p').eq(0).attr('name');
+	    	var telephone = $('.address p').eq(0).attr('telephone');
+	    	var address = $('.address p').eq(1).html();
+	    	var dId = $('.address p').eq(1).attr('dId');
+	    	api.ajax({
+	    		url:BASE_URL+'order/addOrder.html?car_ids='+car_ids.join(',')+'&message='+message+'&userName='+name+'&address='+address+'&telephone='+telephone+'&dispatch_type='+dispatch_type+'&dispatch_id='+dId ,
+	    		method: 'get',
+	    		dataType:'json'
+	    	},function(ret,err){
+	    		showDefault();
+	    		if(ret && ret.stateCode == 1){
+	    			api.openWin({
+	    				name:'payment',
+	    				url:'payment.html',
+	    				pageParam:{
+	    					sum:sum,
+				          orderId:ret.order.id,//订单id
+				          numId:ret.order.order_id,//订单编号
+				          time:ret.order.addTime,
+				          userName : name, //收货人姓名
+				          address:address, //收货人地址
+				          telephone:telephone// 收货人电话
+				      }
+				  });
+	    		}else if(ret.stateCode == 0){
+	    			show('订单提交失败');
+	    		}else if(ret.stateCode == -1){
+	    			show(ret.stateMessage);
+	    		}
+	    	});
+	    });
+
 	    var userInfor = $api.getStorage('userInfor');
 	    var name = userInfor.addressList[0].dispatch.userName;
-	    var tel = userInfor.addressList[0].dispatch.telephone;
+	    var tel  = userInfor.addressList[0].dispatch.telephone;
 	    var ress = userInfor.addressList[0].address;
 	    $('.address p').eq(0).html(name+','+tel).siblings().html(ress);
 	    $('.address p').eq(0).attr('name', name);
 	    $('.address p').eq(0).attr('telephone', tel);
 	    $('.address p').eq(1).attr('dId', userInfor.addressList[0].id);
+
 		$('.address').click(function(){
 			ShowDiv('myAddress','fade');
 			api.ajax({
@@ -344,6 +381,7 @@
 	        method: 'get',
 	        dataType:'json'
         },function(ret,err){
+        	alert($$api.jsonToStr(ret))
         	showDefault();
         	if(ret && ret.stateCode == 1){
         	 	api.openWin({
@@ -365,8 +403,36 @@
         		show(ret.stateMessage);
         	}
         });
+
+
+
+
+	 
+
+
+
+
+
+
+	    
+
+	}
+	
+	
+
+
+	
+
+	$('#express li').click(function(){
+		var str = $(this).html();
+		$('#logistics span').html(str);
+		$('#express').css('display', 'none');
 	});
- };
+	var dispatch_type=$('#logistics span').text();
+
+	  
+
+
  
  function ShowDiv(show_div,bg_div){
 		document.getElementById(show_div).style.display='block';

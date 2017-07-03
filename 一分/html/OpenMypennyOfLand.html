@@ -70,7 +70,33 @@
 <!--地区详情-->
 	<div class="aui-aui-content">
      	<ul class="aui-list-view" id="newList">
-
+     		<!--<li class="aui-list-view-cell aui-img">-->
+     			<!--<img class="aui-img-object aui-pull-left" src="../image/aui/demo4.png">-->
+     			<!--<div class="aui-img-body  aui-ellipsis-1">-->
+					<!--最新动态-->
+     			  <!--<br>-->
+					<!--<span class="selenium_amount_max">含硒量:</span><span class="selenium_amount_max">12</span>-->
+					<!--<br>-->
+					<!--<span class="selenium_amount_max">土地编号:</span><span class="selenium_amount_max">12</span>-->
+					<!--<button class="look">去看看</button>-->
+     			<!--</div>-->
+     		<!--</li>-->
+			<!--<li class="aui-list-view-cell aui-img">
+                <img class="aui-img-object aui-pull-left" src="../image/aui/demo4.png">
+                <div class="aui-img-body  aui-ellipsis-1">
+                         最新动态
+                   <span class="time">2017-05-03</span><br>
+                    <p class="confirm">认证标签</p>
+                </div>
+            </li>
+            <li class="aui-list-view-cell aui-img">
+                <img class="aui-img-object aui-pull-left" src="../image/aui/demo4.png">
+                <div class="aui-img-body  aui-ellipsis-1">
+                         最新动态
+                   <span class="time">2017-05-03</span><br>
+                    <p class="confirm">认证标签</p>
+                </div>
+            </li>-->
      	</ul>
      </div>
 </div>	
@@ -82,9 +108,10 @@
 <script type="text/javascript" src="../script/common.js"></script>
 <script type="text/javascript">
 	apiready = function(){
-    	   var userInfor = $api.getStorage('userInfor');
-    		OpenMypennyOfLandMessage(userInfor.id);
-	};
+	var userInfor = $api.getStorage('userInfor');
+
+		OpenMypennyOfLandMessage(userInfor.id);
+	       };
 
 	function OpenMypennyOfLandMessage(id){
 		api.ajax({
@@ -94,7 +121,6 @@
 			dataType: 'json',
 			returnAll: false,
 		}, function (ret, err) {
-			//var msg = $api.jsonToStr(ret);
 			var rowslen = ret.rows.length;
 			for(var i=0;i<=rowslen-1;i++){
 					var str = '<li class="aui-list-view-cell aui-img lio" ><img class="aui-img-object aui-pull-left" src='+imgurls+ret.rows[i].img_url+ '><div class="aui-img-body  aui-ellipsis-1" id='+ret.rows[i].field_id+'>'+ret.rows[i].title+'<br><span class="selenium_amount_max">含硒量:</span><span class="selenium_amount_max">'+ret.rows[i].selenium_amount_max+'</span><br><span class="selenium_amount_max">土地编号:</span><span class="selenium_amount_max">'+ret.rows[i].location+'</span><button class="look" id='+ret.rows[i].field_id+'>去看看</button></div></li>';
@@ -111,8 +137,10 @@
 						pageParam: {Bid: Bid},
 					});
 			}
+
 			})
 		});
-	};
+	}
+
 </script>
 </html>

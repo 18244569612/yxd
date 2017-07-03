@@ -81,17 +81,116 @@
 <script type="text/javascript" src="../script/common.js"></script>
 <script type="text/javascript">
 	apiready = function() {
-	   $('.btn').css("background-color","#bdbdbd");
-       $('.btn').attr({'disabled':'disabled'});
-       $(".text").focus(function(){
-          $('.btn').css("background-color","#b22700");
-              $('.btn').removeAttr('disabled');
-          });
-       var userInfor = $api.getStorage('userInfor');
-       var user_id = userInfor.id;
-       var field_id = api.pageParam.field_id;
+    $('.btn').css("background-color","#bdbdbd");
+    $('.btn').attr({'disabled':'disabled'});
+    $(".text").focus(function(){
+      $('.btn').css("background-color","#b22700");
+      $('.btn').removeAttr('disabled');
+    });
+    var userInfor = $api.getStorage('userInfor');
+    //alert($api.jsonToStr(userInfor));
+    console.log($api.jsonToStr(userInfor))
+    var user_id = userInfor.id;
+    var userName = userInfor.userName;
+    var field_id = api.pageParam.field_id;
+    $('.ListContent').text(field_id);
 
-		var field_id = api.pageParam.field_id;
 	}
+  $('.btn').click(function () {
+    var text = $('.text').val();
+    console.log(text);
+    var field_id = api.pageParam.field_id;
+    Freeland(field_id,text);
+  })
+  function Freeland(field_idt,to_user_name) {
+    var dialogBox = api.require('dialogBox');
+dialogBox.alert({
+    texts: {
+        title: '',
+        content: '你确定要把'+field_idt+'送给'+to_user_name+'用户吗？',
+        leftBtnTitle: '算了吧',
+        rightBtnTitle: '确认'
+    },
+    styles: {
+        bg: '#fff',
+        w: 300,
+        corner: 10, 
+        title: {
+            marginT: 20,
+            icon: 'widget://res/gou.png',
+            iconSize: 40,
+            titleSize: 14,
+            titleColor: '#000'
+        },
+        content: {
+            color: '#000',
+            size: 14
+        },
+        left: {
+            marginB: 7,
+            marginL: 150,
+            w: 60,
+            h: 35,
+            corner: 2,
+            bg: '',
+            color:'#a7a7a7',
+            size: 12
+        },
+        right: {
+            marginB: 7,
+            marginL: 10,
+            w: 60,
+            h: 35,
+            corner: 2,
+            bg: '',
+            color: '#18aa3d',
+            size: 12
+        }
+    }
+}, function(ret) {
+    if (ret.eventType == 'left') {
+        var dialogBox = api.require('dialogBox');
+        dialogBox.close({
+            dialogName: 'alert'
+        });
+    }
+    if (ret.eventType == 'right') {
+        var userInfor = $api.getStorage('userInfor');
+        var text = $('.text').val();
+        var user_id = userInfor.id;
+        var field_id = api.pageParam.field_id;
+        api.ajax({
+            url:  BASE_URL+'field/fieldPresent?field_id='+field_id+'&from_user_id='+user_id+'&to_user_name='+text+'',
+              method: 'get',
+        }, function(ret, err) {
+            if (ret) {
+                if(ret.stateCode == 1 ){
+                  var dialogBox = api.require('dialogBox');
+                  dialogBox.close({
+                    dialogName: 'alert'
+                  });
+                    api.openWin({
+                        name: 'presentedSuccess',
+                        url: 'presentedSuccess.html',
+                        pageParam: {
+                            name: 'value'
+                        }
+                    });
+                }else{
+                  api.alert({
+                    msg: ''+ret.stateMessage+'',
+                  }, function(ret, err) {
+
+                  });
+                }
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+        console.log('1');
+    }
+});
+
+  }
 </script>
 </html>

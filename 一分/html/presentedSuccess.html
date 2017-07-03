@@ -132,7 +132,7 @@
    
      <div class="aui-col-xs-12 payFor">
          <img src="../image/payment_icon_payment.png" alt="" />
-         <!--<p class="name">尊敬的<span>周先生</span></p>-->
+         <p class="name">尊敬的<span class="name">周先生</span></p>
          <p class="status">您的地已成功赠送！</p>
      </div>
    
@@ -161,7 +161,9 @@
 <script type="text/javascript">
 
 	apiready = function(){
-	
+    var userInfor = $api.getStorage('userInfor');
+
+    // $('.name').text(userInfo.userName);
 	 $('#button').click(function(){
 	   	api.openWin({
 	           name: 'index',

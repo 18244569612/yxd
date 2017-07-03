@@ -65,12 +65,6 @@
 	<div class="kongbai"></div>
 	<div class="aui-aui-content">
      	<ul class="aui-list-view" id="newList">	
-      <!--        <li><p><span class="List">地名</span><span class="ListContent">xv</span></p></li>
-             <li><p><span class="List">位置</span><span class="ListContent">xv</span></p></li>
-             <li><p><span class="List">地编号</span><span class="ListContent">xv</span></p></li>
-             <li><p><span class="List">有效期</span><span class="ListContent">xv</span></p></li>
-             <li><p><span class="List">种植作物</span><span class="ListContent">xv</span></p></li>
-             <li><p><span class="List">当前状态</span><span class="ListContent">xv</span></p></li> -->
      	</ul>
      </div>
 </div>
@@ -95,8 +89,8 @@
 			//alert($api.jsonToStr(ret));
 			var str = '<li><p><span class="List">地名</span><span class="ListContent">'+ret.fieldInfo.title+'</span></p></li><li><p><span class="List">位置</span><span class="ListContent">'+ret.fieldInfo.location+'</span></p></li><li><p><span class="List">地编号</span><span class="ListContent ListContentField_id">'+ret.fieldInfo.field_id+'</span></p></li> <li><p><span class="List">有效期</span><span class="ListContent">'+ret.fieldInfo.price+'</span></li><li><p><span class="List">种植作物</span><span class="ListContent">'+ret.fieldInfo.product_id+'</span></p></li><li><p><span class="List">当前状态</span><span class="ListContent">'+ret.fieldInfo.status+'</span></p></li>';
             $('#newList').append(str);
-		});
-	} 
+        });
+    } 
     $('.btn').click(function () {
         var field_id = $('.ListContentField_id').text();
         alert(field_id);
