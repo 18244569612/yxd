@@ -76,24 +76,24 @@
 <script type="text/javascript" src="../script/swipe.js"></script>
 <script type="text/javascript" src="../script/common.js"></script>
 <script type="text/javascript">
-	apiready = function() {
-		var field_id = api.pageParam.Bid;
-		api.ajax({
-		
-			method: 'get',
-			dataType: 'json',
-			returnAll: false,
-		}, function (ret, err) {
-			$api.jsonToStr(ret);
-                var str = '<li><p><span class="List">地名</span><span class="ListContent">'+ret.fieldInfo.title+'</span></p></li><li><p><span class="List">位置</span><span class="ListContent">'+ret.fieldInfo.location+'</span></p></li><li><p><span class="List">地编号</span><span class="ListContent ListContentField_id">'+ret.fieldInfo.field_id+'</span></p></li> <li><p><span class="List">有效期</span><span class="ListContent">'+ret.fieldInfo.price+'</span></li><li><p><span class="List">种植作物</span><span class="ListContent">'+ret.fieldInfo.product_id+'</span></p></li><li><p><span class="List">当前状态</span><span class="ListContent">'+ret.fieldInfo.status+'</span></p></li>';
+    apiready = function() {
+        var field_id = api.pageParam.Bid;
+        //alert(field_id)
+        api.ajax({
+            url: 'http://192.168.1.106:8080/selenium/client/field//getFieldInfo?field_id='+field_id,
+            method: 'get',
+            dataType: 'json',
+            returnAll: false,
+        }, function (ret, err) {
+            $api.jsonToStr(ret);
+            //alert($api.jsonToStr(ret));
+            var str = '<li><p><span class="List">地名</span><span class="ListContent">'+ret.fieldInfo.title+'</span></p></li><li><p><span class="List">位置</span><span class="ListContent">'+ret.fieldInfo.location+'</span></p></li><li><p><span class="List">地编号</span><span class="ListContent ListContentField_id">'+ret.fieldInfo.field_id+'</span></p></li> <li><p><span class="List">有效期</span><span class="ListContent">'+ret.fieldInfo.price+'</span></li><li><p><span class="List">种植作物</span><span class="ListContent">'+ret.fieldInfo.product_id+'</span></p></li><li><p><span class="List">当前状态</span><span class="ListContent">'+ret.fieldInfo.status+'</span></p></li>';
             $('#newList').append(str);
-
-		});
-
-	}
-		
+        });
+    } 
     $('.btn').click(function () {
         var field_id = $('.ListContentField_id').text();
+        alert(field_id);
         api.openWin({
             name: 'Freeland',
             url: 'Freeland.html',
